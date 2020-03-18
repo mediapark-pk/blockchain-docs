@@ -20,6 +20,7 @@ port | uint | 2 bytes | no | | |
 connected | uint | 1 byte | no | 0 | | "1" indicates connected, "0" for not connected
 last_connect | micro_ts | decimal(14,4) | no | | | Store micro timestamp of last connection
 last_disconnect | micro_ts | decimal(14,4) | yes | NULL | | Store micro timestamp when disconnects
+**ip_port** | **unique** | | | | `ip_address` + `port` | 
 
 ## `Table` ip_tables
 
@@ -30,13 +31,14 @@ ip_address | string | 45 | no | | | This is a UNIQUE identifier in conjunction w
 type | enum | "white", "black" | no | black | | Maintains 2 lists
 added_on | timestamp | uint4 | no | | | When added to list
 until | timestamp | uint4 | yes | NULL | | If NULL or non-positive integer then it is kept on list for indefinite period of time
+**list_ip** | **unique** | | | | `list` + `ip_address` | 
 
 
 ## `Table` ip_violations
 
 Column | Datatype | Len/Size | Nullable | Default | Attributes | Notes
 --- | --- | --- | --- | --- | --- | ---
-ip_address | string | 45 | no | | | This is a UNIQUE identifier. Definite IPs WITHOUT wildcards
+**ip_address** | string | 45 | no | | | This is a UNIQUE identifier. Definite IPs WITHOUT wildcards
 count | uint | 1 byte | no | 1 | | +1 for every violation
 last_on | micro_ts | uint4 | yes | NULL | | micro timestamp of last violation
 
