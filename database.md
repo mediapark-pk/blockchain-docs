@@ -38,9 +38,8 @@ until | timestamp | uint4 | yes | NULL | | If NULL or non-positive integer then 
 
 Column | Datatype | Len/Size | Nullable | Default | Attributes | Notes
 --- | --- | --- | --- | --- | --- | ---
-**ip_address** | string | 45 | no | | | This is a UNIQUE identifier. Definite IPs WITHOUT wildcards
+list | enum | "network", "rpc", "ws" | no | network | | This is a UNIQUE identifier in conjunction with `ip_address`
+ip_address | string | 45 | no | | | This is a UNIQUE identifier in conjunction with `list`. NO wildcards, DEFINITE IP addresses only
 count | uint | 1 byte | no | 1 | | +1 for every violation
 last_on | micro_ts | uint4 | yes | NULL | | micro timestamp of last violation
-
-
- 
+**list_ip** | **unique** | | | | `list` + `ip_address` | 
