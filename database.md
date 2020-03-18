@@ -41,5 +41,5 @@ Column | Datatype | Len/Size | Nullable | Default | Attributes | Notes
 list | enum | "network", "rpc", "ws" | no | network | | This is a UNIQUE identifier in conjunction with `ip_address`
 ip_address | string | 45 | no | | | This is a UNIQUE identifier in conjunction with `list`. NO wildcards, DEFINITE IP addresses only
 count | uint | 1 byte | no | 1 | | +1 for every violation
-last_on | timestamp | uint4 | yes | NULL | | Timestamp of last violation
+last_on | timestamp | uint4 | no | | | Timestamp of last violation
 **list_ip** | **unique** | | | | `list` + `ip_address` | 
