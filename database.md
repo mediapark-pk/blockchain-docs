@@ -21,11 +21,12 @@ connected | uint | 1 byte | no | 0 | | "1" indicates connected, "0" for not conn
 last_connect | micro_ts | decimal(14,4) | no | | | Store micro timestamp of last connection
 last_disconnect | micro_ts | decimal(14,4) | yes | NULL | | Store micro timestamp when disconnects
 
-## `Table` ip_lists
+## `Table` ip_tables
 
 Column | Datatype | Len/Size | Nullable | Default | Attributes | Notes
 --- | --- | --- | --- | --- | --- | ---
-ip_address | string | 45 | no | | | This is a UNIQUE identifier. This can ACCEPT WILDCARD "%" char
+list | enum | "network", "rpc", "ws" | no | network | | This is a UNIQUE identifier in conjunction with `ip_address`
+ip_address | string | 45 | no | | | This is a UNIQUE identifier in conjunction with `list`. This can ACCEPT WILDCARD "%" char
 type | enum | "white", "black" | no | black | | Maintains 2 lists
 added_on | timestamp | uint4 | no | | | When added to list
 until | timestamp | uint4 | yes | NULL | | If NULL or non-positive integer then it is kept on list for indefinite period of time
