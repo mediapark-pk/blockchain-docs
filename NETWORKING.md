@@ -92,7 +92,7 @@ NOTE_TYPE_VIOLATION | active | v0.1.0 | Notification from a remote peer indicati
 Communication rules are STRICTLY ENFORCED, and if a peer is misbehaving, its connection is to be dropped almost immediately with a increased violation count. 
 If a pre-configured `N` number of violations are reached, a remote peer's IP address is added to blacklist for a period of time.
 
-**Table 1.3.1.1**
+**Table 1.3.3.1**
 
 Violation | Code | Hex | Description
 --- | --- | --- | ---
@@ -108,27 +108,18 @@ MSG_ARGS_REQUIRED | 1709 | 0x06ad | No arguments; This usually indicates that mo
 BAD_ARGUMENTS | 1710 | 0x06ae | Bad arguments; This usually indicated that message/arguments sent (after initial 4 bytes of message) are either bad or incorrectly serialized
 UNNECESSARY_MSG_RECEIVED | 1711 | 0x06af | Remote peer has sent an unnecessary message
 
-## Message Formats
+#### 1.3.3.2 – Rules
 
-
-
-### Handshake Message
-
-
-
-Param | Example Value | Notes
---- | --- | ---
-Network passphrase | MediaPark-Blockchain-Prototype:10400 | Blockchain network identifier, name followed by an integer (i.e. year)
-Protocol version | 10 | Implemented protocol version as unsigned integer
-Listen port | 18301 | Port # where this node is listening for connections; 0 if not listening
-
-**Example Handshake:**  
-`/MediaPark-Blockchain-Prototype:2020/10/18301/`
-
-This entire string is to be converted to hexadecimal representation (based on ASCII table chars 32-128)
-
-#### Serialization
-
-Make a concat string
-
+* Upon violation a notification message `MSG_TYPE_NOTIFICATION` with flag `NOTE_TYPE_VIOLATION` followed by appropriate violation code 
+ is sent remote peer and connection is immediately dropped.
+ * Upon `N` violations, IP address of remote peer is added to blacklist for `X` hours.
+ * For pruning of these violations, 1 violation is removed/decreased for an IP address per `Y` hours.
+ 
+ **Table 1.3.3.2.1**
+ 
+ Item | Variable | Suggested Value
+ --- | --- | ---
+ Maximum violations | N | 10
+ Blacklist period | X | 3 Hours
+ Prune 1 violation | Y | Every 1 hour
 
