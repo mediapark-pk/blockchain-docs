@@ -38,6 +38,12 @@ Backlog | 50
 
 ## 1.3 — Messages
 
+**Table 1.3.0.1**
+
+Parameter | Argument | Notes
+--- | --- | ---
+Maximum Message Length | 2 * (10 ** 6) | A message must not exceed 2MB in size
+
 ### 1.3.1 – Serialization
 
 * All messages must be sent in hexadecimal and may be delimited by `\n` (unix line feed character).
@@ -90,7 +96,17 @@ If a pre-configured `N` number of violations are reached, a remote peer's IP add
 
 Violation | Code | Hex | Description
 --- | --- | --- | ---
-INVALID_MESSAGE_ENCODING | 1701 | 0x06a5 | Received message is not a valid hexadecimal string. All messages must 
+INVALID_MESSAGE_ENCODING | 1701 | 0x06a5 | Received message is not a valid hexadecimal string. All messages must adhere defined data domain.
+META_MSG_SIZE_UNDERFLOW | 1702 | 0x06a6 | Underflow exception. Message received is less then minimum expected 4 bytes
+META_MSG_SIZE_OVERFLOW | 1703 | 0x06a7 | Overflow exception. Message received exceeds hard limit (i.e. `n`MB + 4 bytes)
+BAD_MSG_TYPE_FLAG | 1704 | 0x06a8 | Invalid or disabled message flag was specified in first 2 bytes of message
+MSG_LEN_UNDERFLOW | 1705 | 0x06a9 | Message len (after first 4 bytes) is less then mentioned number of bytes
+MSG_LEN_OVERFLOW | 1706 | 0x06aa | Message len (after first 4 bytes) exceeds mentioned number of bytes
+NO_HANDSHAKE_CALL | 1707 | 0x06ab | Sent a message without going through proper handshake channel first
+BAD_HANDSHAKE_STR | 1708 | 0x06ac | Bad handshake string was sent, a notification message of type `NOTE_TYPE_HS_REJECT` may also be sent to peer with this
+MSG_ARGS_REQUIRED | 1709 | 0x06ad | No arguments; This usually indicates that more bytes were expected after initial 4 but none were received
+BAD_ARGUMENTS | 1710 | 0x06ae | Bad arguments; This usually indicated that message/arguments sent (after initial 4 bytes of message) are either bad or incorrectly serialized
+UNNECESSARY_MSG_RECEIVED | 1711 | 0x06af | Remote peer has sent an unnecessary message
 
 ## Message Formats
 
