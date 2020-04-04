@@ -53,11 +53,11 @@ Message Length | 14 bytes
 
 **Table 1.3.1.2**
 
-Index | Parameter | Type | Example Value | Notes
+Index | Parameter | Type | Notes | Example Value
 --- | --- | --- | --- | ---
-1 | Flag | Uint16LE | 0x4c04 | MSG_TYPE_NOTIFICATION *(dec: `1100`)*
-2 | Message length | Uint16LE | 0x0e00 | 14 bytes length of an example message from [Table 1.3.1.1](#)
-3 | Actual message | Base16 | 0x2f4d656469615061726b2e504b2f | an example message from [Table 1.3.1.1](#)
+1 | Flag | Uint16LE | MSG_TYPE_NOTIFICATION *(dec: `1100`)* | 0x4c04
+2 | Message length | Uint16LE | 14 bytes length of an example message from [Table 1.3.1.1](#) | 0x0e00
+3 | Actual message | Base16 | An example message from [Table 1.3.1.1](#) | 0x2f4d656469615061726b2e504b2f
 
 Thus, this message can be sent over P2P network as:
 `4c040e002f4d656469615061726b2e504b2f`
