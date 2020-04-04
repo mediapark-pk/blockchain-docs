@@ -62,6 +62,25 @@ Index | Parameter | Type | Notes | Example Value
 Thus, this message can be sent over P2P network as:
 `4c040e002f4d656469615061726b2e504b2f`
 
+### 1.3.1 – Message Flags
+
+Following message flags are available and supported:
+
+Flag | Status | Since Protocol | Purpose
+--- | --- | --- | ---
+MSG_TYPE_HANDSHAKE | active | v0.1.0 | Exchange handshake strings
+MSG_TYPE_NOTIFICATION | active | v0.1.0 | Notification/acknowledgment message
+MSG_TYPE_REQ_PEERS | active | v0.1.0 | Request a list of peers
+MSG_TYPE_RES_PEERS | active | v0.1.0 | Response having a serialized list of peers
+
+#### 1.3.1.2 – Notifications/Acknowledgments
+
+Flag | Status | Since Protocol | Purpose
+--- | --- | --- | ---
+NOTE_TYPE_HS_ACCEPT | active | v0.1.0 | Acknowledgment for a handshake string being accepted by remote peer
+NOTE_TYPE_HS_REJECT | active | v0.1.0 | Acknowledgment for a handshake string being rejected by remote peer
+NOTE_TYPE_VIOLATION | active | v0.1.0 | Notification from a remote peer indicating a violation was detected from this node
+
 ### 1.3.3 – Violations
 
 Communication rules are STRICTLY ENFORCED, and if a peer is misbehaving, its connection is to be dropped almost immediately with a increased violation count. 
