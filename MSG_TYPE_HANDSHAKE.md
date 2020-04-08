@@ -2,7 +2,7 @@
 
 Handshake is the very first operation that will be performed by the application. Handshake is done via passing a message between two peers who just connected and whether they will hold this connection or will be dropped depends on the handshake message.
 
--**Sender Handshake Message**
+## -Sender Handshake Message ##
 
 When a new peer is connected the peer sends the handshake string. Default handshake message is sent . Message String consists of three parts.
 
