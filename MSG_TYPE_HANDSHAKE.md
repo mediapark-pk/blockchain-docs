@@ -1,4 +1,4 @@
-# 1 -- Handshake
+# 1 - Handshake
 
 Handshake is the very first operation that will be performed by the application. Handshake is done via passing a message between two peers who just connected and whether they will hold this connection or will be dropped depends on the handshake message.
 
